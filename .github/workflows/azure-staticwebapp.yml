@@ -14,10 +14,10 @@ name: Deploy Rubik's cube web app to Azure
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
     types: [opened, synchronize, reopened, closed]
-    branches: [ "main" ]
+    branches: ["main"]
 
 # Environment variables available to all jobs and steps in this workflow
 env:
