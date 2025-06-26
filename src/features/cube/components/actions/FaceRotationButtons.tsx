@@ -11,7 +11,7 @@ interface FaceRotationButtonsProps {
 const faces: Face[] = Object.keys(faceNames) as Face[];
 
 const FaceRotationButtons = ({ onRotate }: FaceRotationButtonsProps) => (
-  <div className="m-4">
+  <div className="m-4" data-testid="face-rotation-buttons">
     {/* Clockwise buttons row */}
     <div className="flex gap-3 mb-2">
       {faces.map((face) => (
