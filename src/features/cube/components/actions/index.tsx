@@ -11,7 +11,7 @@ const Actions = ({ onRotate, onReset }: ActionsProps) => (
     <FaceRotationButtons onRotate={onRotate} />
     <button
       onClick={onReset}
-      className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+      className="min-w-[75px] rounded-lg border border-transparent px-5 py-2 text-base font-medium bg-[#1a1a1a] text-white cursor-pointer transition-colors hover:border-[#646cff]"
     >
       Reset Cube
     </button>

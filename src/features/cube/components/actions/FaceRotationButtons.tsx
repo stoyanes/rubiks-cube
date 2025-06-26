@@ -18,7 +18,7 @@ const FaceRotationButtons = ({ onRotate }: FaceRotationButtonsProps) => (
         <button
           key={`${face}-clockwise`}
           onClick={() => onRotate(face, "clockwise")}
-          className="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 transition"
+          className="min-w-[75px] rounded-lg border border-transparent px-5 py-2 text-base font-medium bg-[#1a1a1a] text-white cursor-pointer transition-colors hover:border-[#646cff]"
           title={`${faceNames[face]} clockwise`}
         >
           {face}
@@ -31,7 +31,7 @@ const FaceRotationButtons = ({ onRotate }: FaceRotationButtonsProps) => (
         <button
           key={`${face}-counterclockwise`}
           onClick={() => onRotate(face, "counterclockwise")}
-          className="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 transition"
+          className="min-w-[75px] rounded-lg border border-transparent px-5 py-2 text-base font-medium bg-[#1a1a1a] text-white cursor-pointer transition-colors hover:border-[#646cff]"
           title={`${faceNames[face]} counterclockwise`}
         >
           {face}'
