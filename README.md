@@ -28,6 +28,18 @@ npm run build
 npm run preview
 ```
 
+### Run tests
+
+```sh
+npm test
+```
+
+### Run tests with coverage
+
+```sh
+npm run coverage
+```
+
 ### Storybook
 
 This project supports [Storybook](https://storybook.js.org/) for developing and testing UI components in isolation.
