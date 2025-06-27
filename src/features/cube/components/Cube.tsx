@@ -6,7 +6,7 @@ import {
   type RotationDirection,
 } from "../../../types";
 import Actions from "./actions";
-import { createSolvedCube, rotateCubeFace } from "../../../lib/rotationEngine";
+import { createSolvedCube, rotateCube } from "../../../lib/rotationEngine";
 
 const CubeFace = (cube: CubeState, face: Face) => {
   return (
@@ -47,7 +47,7 @@ const Cube = () => {
 
   const handleRotate = useCallback(
     (face: Face, direction: RotationDirection) => {
-      setCube((prev) => rotateCubeFace(prev, face, direction));
+      setCube((prev) => rotateCube(prev, face, direction));
     },
     [],
   );

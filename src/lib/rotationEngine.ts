@@ -1,4 +1,9 @@
-import type { CubeState, Face, RotationDirection } from "../types";
+import {
+  faceNames,
+  type CubeState,
+  type Face,
+  type RotationDirection,
+} from "../types";
 
 const CUBE_SIZE = 3;
 
@@ -13,12 +18,8 @@ export const createSolvedCube = (): CubeState => {
   };
 };
 
-const deepCopyCube = (state: CubeState): CubeState => {
-  return structuredClone(state);
-};
-
 // Rotate a face 90 degrees in the given direction
-const rotateFaceGrid = (
+const rotateFace = (
   face: string[][],
   direction: RotationDirection,
 ): string[][] => {
@@ -61,19 +62,22 @@ const updateColumn = (
 
 const rev = (arr: string[]): string[] => [...arr].reverse();
 
-export const rotateCubeFace = (
+export const rotateCube = (
   cube: CubeState,
   face: Face,
   direction: RotationDirection,
 ): CubeState => {
+  if (!Object.keys(faceNames).includes(face)) {
+    throw new Error(`Invalid face: ${face}`);
+  }
+
   if (direction !== "clockwise" && direction !== "counterclockwise") {
     throw new Error(`Invalid rotation direction: ${direction}`);
   }
 
-  const newCube = deepCopyCube(cube);
+  const newCube = structuredClone(cube) as CubeState;
 
-  // Rotate the face itself
-  newCube[face] = rotateFaceGrid(cube[face], direction);
+  newCube[face] = rotateFace(cube[face], direction);
 
   if (face === "F") {
     const up = getRow(cube.U, 2);
@@ -150,15 +154,15 @@ export const rotateCubeFace = (
     const back = getColumn(cube.B, CUBE_SIZE - 1);
 
     if (direction === "clockwise") {
-      updateColumn(newCube.U, 0, back.reverse());
+      updateColumn(newCube.U, 0, rev(back));
       updateColumn(newCube.F, 0, up);
       updateColumn(newCube.D, 0, front);
-      updateColumn(newCube.B, CUBE_SIZE - 1, down.reverse());
+      updateColumn(newCube.B, CUBE_SIZE - 1, rev(down));
     } else {
       updateColumn(newCube.U, 0, front);
       updateColumn(newCube.F, 0, down);
-      updateColumn(newCube.D, 0, back.reverse());
-      updateColumn(newCube.B, CUBE_SIZE - 1, up.reverse());
+      updateColumn(newCube.D, 0, rev(back));
+      updateColumn(newCube.B, CUBE_SIZE - 1, rev(up));
     }
   } else if (face === "R") {
     const up = getColumn(cube.U, CUBE_SIZE - 1);
@@ -169,13 +173,13 @@ export const rotateCubeFace = (
     if (direction === "clockwise") {
       updateColumn(newCube.U, CUBE_SIZE - 1, front);
       updateColumn(newCube.F, CUBE_SIZE - 1, down);
-      updateColumn(newCube.D, CUBE_SIZE - 1, back.reverse());
-      updateColumn(newCube.B, 0, up.reverse());
+      updateColumn(newCube.D, CUBE_SIZE - 1, rev(back));
+      updateColumn(newCube.B, 0, rev(up));
     } else {
-      updateColumn(newCube.U, CUBE_SIZE - 1, back.reverse());
+      updateColumn(newCube.U, CUBE_SIZE - 1, rev(back));
       updateColumn(newCube.F, CUBE_SIZE - 1, up);
       updateColumn(newCube.D, CUBE_SIZE - 1, front);
-      updateColumn(newCube.B, 0, down.reverse());
+      updateColumn(newCube.B, 0, rev(down));
     }
   }
 

@@ -1,5 +1,5 @@
 import { expect, test, describe } from "vitest";
-import { createSolvedCube, rotateCubeFace } from "../rotationEngine";
+import { createSolvedCube, rotateCube } from "../rotationEngine";
 
 describe("createSolvedCube", () => {
   test("returns a solved cube", () => {
@@ -14,68 +14,115 @@ describe("createSolvedCube", () => {
   });
 });
 
-describe("rotateCubeFace", () => {
-  test("rotating F face clockwise updates the F face correctly", () => {
+describe("rotateCube", () => {
+  test("rotating F face clockwise updates the cube correctly", () => {
     const cube = createSolvedCube();
-    const rotated = rotateCubeFace(cube, "F", "clockwise");
+    const rotated = rotateCube(cube, "F", "clockwise");
 
-    // The F face should be rotated (but since all stickers are the same, it should look the same)
     expect(rotated.F).toEqual([
       ["F", "F", "F"],
       ["F", "F", "F"],
       ["F", "F", "F"],
     ]);
 
-    expect(cube).not.toEqual(rotated);
-  });
+    expect(rotated.B).toEqual([
+      ["B", "B", "B"],
+      ["B", "B", "B"],
+      ["B", "B", "B"],
+    ]);
 
-  test("rotating F face counterclockwise updates the F face correctly", () => {
-    const cube = createSolvedCube();
-    const rotated = rotateCubeFace(cube, "F", "counterclockwise");
+    expect(rotated.U).toEqual([
+      ["U", "U", "U"],
+      ["U", "U", "U"],
+      ["L", "L", "L"],
+    ]);
 
-    // The F face should be rotated (but since all stickers are the same, it should look the same)
-    expect(rotated.F).toEqual([
-      ["F", "F", "F"],
-      ["F", "F", "F"],
-      ["F", "F", "F"],
+    expect(rotated.D).toEqual([
+      ["R", "R", "R"],
+      ["D", "D", "D"],
+      ["D", "D", "D"],
+    ]);
+
+    expect(rotated.L).toEqual([
+      ["L", "L", "D"],
+      ["L", "L", "D"],
+      ["L", "L", "D"],
+    ]);
+
+    expect(rotated.R).toEqual([
+      ["U", "R", "R"],
+      ["U", "R", "R"],
+      ["U", "R", "R"],
     ]);
   });
 
   test("rotating F face counterclockwise updates the cube correctly", () => {
     const cube = createSolvedCube();
-    const rotated = rotateCubeFace(cube, "F", "counterclockwise");
+    const rotated = rotateCube(cube, "F", "counterclockwise");
 
-    expect(cube).not.toEqual(rotated);
-    expect(rotated.U[2]).toEqual(["R", "R", "R"]);
-    expect(rotated.R[0]).toEqual(["D", "R", "R"]);
-    expect(rotated.D[0]).toEqual(["L", "L", "L"]);
-    expect(rotated.L[2]).toEqual(["L", "L", "U"]);
+    expect(rotated.F).toEqual([
+      ["F", "F", "F"],
+      ["F", "F", "F"],
+      ["F", "F", "F"],
+    ]);
+    expect(rotated.B).toEqual([
+      ["B", "B", "B"],
+      ["B", "B", "B"],
+      ["B", "B", "B"],
+    ]);
+
+    expect(rotated.U).toEqual([
+      ["U", "U", "U"],
+      ["U", "U", "U"],
+      ["R", "R", "R"],
+    ]);
+
+    expect(rotated.D).toEqual([
+      ["L", "L", "L"],
+      ["D", "D", "D"],
+      ["D", "D", "D"],
+    ]);
+
+    expect(rotated.L).toEqual([
+      ["L", "L", "U"],
+      ["L", "L", "U"],
+      ["L", "L", "U"],
+    ]);
+
+    expect(rotated.R).toEqual([
+      ["D", "R", "R"],
+      ["D", "R", "R"],
+      ["D", "R", "R"],
+    ]);
   });
 
   test("rotating the same face four times returns to original for solved cube", () => {
     const cube = createSolvedCube();
+
     let rotated = cube;
     for (let i = 0; i < 4; i++) {
-      rotated = rotateCubeFace(rotated, "F", "clockwise");
+      rotated = rotateCube(rotated, "F", "clockwise");
     }
     expect(rotated).toEqual(cube);
   });
 
   test("rotating all faces once does not return to original", () => {
     const cube = createSolvedCube();
-    let rotated = rotateCubeFace(cube, "F", "clockwise");
-    rotated = rotateCubeFace(rotated, "B", "clockwise");
-    rotated = rotateCubeFace(rotated, "U", "clockwise");
-    rotated = rotateCubeFace(rotated, "D", "clockwise");
-    rotated = rotateCubeFace(rotated, "L", "clockwise");
-    rotated = rotateCubeFace(rotated, "R", "clockwise");
+
+    let rotated = rotateCube(cube, "F", "clockwise");
+    rotated = rotateCube(rotated, "B", "clockwise");
+    rotated = rotateCube(rotated, "U", "clockwise");
+    rotated = rotateCube(rotated, "D", "clockwise");
+    rotated = rotateCube(rotated, "L", "clockwise");
+    rotated = rotateCube(rotated, "R", "clockwise");
+
     expect(rotated).not.toEqual(cube);
   });
 
   test("rotating a face twice (clockwise and then counterclockwise) returns to original for solved cube", () => {
     const cube = createSolvedCube();
-    const rotated = rotateCubeFace(
-      rotateCubeFace(cube, "F", "clockwise"),
+    const rotated = rotateCube(
+      rotateCube(cube, "F", "clockwise"),
       "F",
       "counterclockwise",
     );
@@ -85,22 +132,59 @@ describe("rotateCubeFace", () => {
 
   test("rotating with invalid face throws error", () => {
     const cube = createSolvedCube();
-    expect(() => rotateCubeFace(cube, "X" as never, "clockwise")).toThrow();
+
+    expect(() => rotateCube(cube, "X" as never, "clockwise")).toThrow();
   });
 
   test("rotating with invalid direction throws error", () => {
     const cube = createSolvedCube();
-    expect(() => rotateCubeFace(cube, "F", "invalid" as never)).toThrow();
+
+    expect(() => rotateCube(cube, "F", "invalid" as never)).toThrow();
   });
 
-  test("rotating U face clockwise updates the cube correctly", () => {
+  test("complex rotation sequence", () => {
     const cube = createSolvedCube();
-    const rotated = rotateCubeFace(cube, "U", "clockwise");
+    let rotated = rotateCube(cube, "F", "clockwise");
+    rotated = rotateCube(rotated, "R", "counterclockwise");
+    rotated = rotateCube(rotated, "U", "clockwise");
+    rotated = rotateCube(rotated, "B", "counterclockwise");
+    rotated = rotateCube(rotated, "L", "clockwise");
+    rotated = rotateCube(rotated, "D", "counterclockwise");
 
-    expect(cube).not.toEqual(rotated);
-    expect(rotated.F[0]).toEqual(["R", "R", "R"]);
-    expect(rotated.R[0]).toEqual(["B", "B", "B"]);
-    expect(rotated.B[0]).toEqual(["L", "L", "L"]);
-    expect(rotated.L[0]).toEqual(["F", "F", "F"]);
+    expect(rotated.F).toEqual([
+      ["L", "R", "R"],
+      ["L", "F", "U"],
+      ["U", "U", "U"],
+    ]);
+
+    expect(rotated.R).toEqual([
+      ["D", "B", "L"],
+      ["R", "R", "U"],
+      ["L", "D", "R"],
+    ]);
+
+    expect(rotated.U).toEqual([
+      ["R", "L", "F"],
+      ["B", "U", "U"],
+      ["B", "B", "B"],
+    ]);
+
+    expect(rotated.L).toEqual([
+      ["F", "D", "D"],
+      ["L", "L", "F"],
+      ["B", "F", "L"],
+    ]);
+
+    expect(rotated.B).toEqual([
+      ["D", "B", "U"],
+      ["L", "B", "D"],
+      ["D", "D", "U"],
+    ]);
+
+    expect(rotated.D).toEqual([
+      ["F", "F", "B"],
+      ["R", "D", "R"],
+      ["R", "F", "F"],
+    ]);
   });
 });
