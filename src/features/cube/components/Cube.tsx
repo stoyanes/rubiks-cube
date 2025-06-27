@@ -14,7 +14,8 @@ const CubeFace = (cube: CubeState, face: Face) => {
       {cube[face].map((row, i) =>
         row.map((cell, j) => (
           <div
-            key={`${i}-${j}`}
+            // eslint-disable-next-line react-x/no-array-index-key
+            key={`${face}-${i}-${j}`}
             className="w-11 h-11 border border-gray-800"
             style={{ background: faceColors[cell as Face] }}
           />

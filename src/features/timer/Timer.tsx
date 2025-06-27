@@ -30,6 +30,7 @@ const Timer = () => {
       <div className="text-2xl font-mono mb-2">{seconds}s</div>
       <div className="flex gap-2">
         <button
+          type="button"
           onClick={handleStart}
           disabled={running}
           className="px-3 py-1 bg-green-600 text-white rounded"
@@ -37,6 +38,7 @@ const Timer = () => {
           Start
         </button>
         <button
+          type="button"
           onClick={handlePause}
           disabled={!running}
           className="px-3 py-1 bg-yellow-500 text-white rounded"
@@ -44,6 +46,7 @@ const Timer = () => {
           Pause
         </button>
         <button
+          type="button"
           onClick={handleReset}
           className="px-3 py-1 bg-red-600 text-white rounded"
         >

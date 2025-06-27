@@ -16,6 +16,7 @@ const FaceRotationButtons = ({ onRotate }: FaceRotationButtonsProps) => (
     <div className="flex gap-3 mb-2">
       {faces.map((face) => (
         <button
+          type="button"
           key={`${face}-clockwise`}
           onClick={() => onRotate(face, "clockwise")}
           className="min-w-[75px] rounded-lg border border-transparent px-5 py-2 text-base font-medium bg-[#1a1a1a] text-white cursor-pointer transition-colors hover:border-[#646cff]"
@@ -29,6 +30,7 @@ const FaceRotationButtons = ({ onRotate }: FaceRotationButtonsProps) => (
     <div className="flex gap-3">
       {faces.map((face) => (
         <button
+          type="button"
           key={`${face}-counterclockwise`}
           onClick={() => onRotate(face, "counterclockwise")}
           className="min-w-[75px] rounded-lg border border-transparent px-5 py-2 text-base font-medium bg-[#1a1a1a] text-white cursor-pointer transition-colors hover:border-[#646cff]"

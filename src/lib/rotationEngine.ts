@@ -9,12 +9,30 @@ const CUBE_SIZE = 3;
 
 export const createSolvedCube = (): CubeState => {
   return {
-    F: Array.from({ length: CUBE_SIZE }, () => Array(CUBE_SIZE).fill("F")),
-    B: Array.from({ length: CUBE_SIZE }, () => Array(CUBE_SIZE).fill("B")),
-    U: Array.from({ length: CUBE_SIZE }, () => Array(CUBE_SIZE).fill("U")),
-    D: Array.from({ length: CUBE_SIZE }, () => Array(CUBE_SIZE).fill("D")),
-    L: Array.from({ length: CUBE_SIZE }, () => Array(CUBE_SIZE).fill("L")),
-    R: Array.from({ length: CUBE_SIZE }, () => Array(CUBE_SIZE).fill("R")),
+    F: Array.from(
+      { length: CUBE_SIZE },
+      () => Array(CUBE_SIZE).fill("F") as string[],
+    ),
+    B: Array.from(
+      { length: CUBE_SIZE },
+      () => Array(CUBE_SIZE).fill("B") as string[],
+    ),
+    U: Array.from(
+      { length: CUBE_SIZE },
+      () => Array(CUBE_SIZE).fill("U") as string[],
+    ),
+    D: Array.from(
+      { length: CUBE_SIZE },
+      () => Array(CUBE_SIZE).fill("D") as string[],
+    ),
+    L: Array.from(
+      { length: CUBE_SIZE },
+      () => Array(CUBE_SIZE).fill("L") as string[],
+    ),
+    R: Array.from(
+      { length: CUBE_SIZE },
+      () => Array(CUBE_SIZE).fill("R") as string[],
+    ),
   };
 };
 
@@ -23,8 +41,9 @@ const rotateFace = (
   face: string[][],
   direction: RotationDirection,
 ): string[][] => {
-  const newFace = Array.from({ length: CUBE_SIZE }, () =>
-    Array(CUBE_SIZE).fill(""),
+  const newFace = Array.from(
+    { length: CUBE_SIZE },
+    () => Array(CUBE_SIZE).fill("") as string[],
   );
 
   for (let i = 0; i < CUBE_SIZE; i++) {
@@ -72,10 +91,10 @@ export const rotateCube = (
   }
 
   if (direction !== "clockwise" && direction !== "counterclockwise") {
-    throw new Error(`Invalid rotation direction: ${direction}`);
+    throw new Error(`Invalid rotation direction: ${direction as string}`);
   }
 
-  const newCube = structuredClone(cube) as CubeState;
+  const newCube = structuredClone(cube);
 
   newCube[face] = rotateFace(cube[face], direction);
 
