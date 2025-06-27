@@ -18,6 +18,7 @@ const CubeFace = (cube: CubeState, face: Face) => {
             key={`${face}-${i}-${j}`}
             className="w-11 h-11 border border-gray-800"
             style={{ background: faceColors[cell as Face] }}
+            role="face-cell"
           />
         )),
       )}
@@ -27,7 +28,10 @@ const CubeFace = (cube: CubeState, face: Face) => {
 
 const CubeView = ({ cube }: { cube: CubeState }) => {
   return (
-    <div className="flex flex-col items-center">
+    <div
+      data-testid="cube-view-container"
+      className="flex flex-col items-center"
+    >
       {/* Up face */}
       <div className="-ml-33">{CubeFace(cube, "U")}</div>
       {/* Middle row: L F R B */}

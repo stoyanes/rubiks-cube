@@ -142,7 +142,25 @@ describe("rotateCube", () => {
     expect(() => rotateCube(cube, "F", "invalid" as never)).toThrow();
   });
 
-  test("complex rotation sequence", () => {
+  test("rotating U and L counter clockwise", () => {
+    const cube = createSolvedCube();
+    let rotated = rotateCube(cube, "U", "counterclockwise");
+    rotated = rotateCube(rotated, "L", "counterclockwise");
+
+    expect(rotated.U).toEqual([
+      ["L", "U", "U"],
+      ["F", "U", "U"],
+      ["F", "U", "U"],
+    ]);
+
+    expect(rotated.L).toEqual([
+      ["B", "L", "L"],
+      ["B", "L", "L"],
+      ["B", "L", "L"],
+    ]);
+  });
+
+  test("complex rotation sequence (from requirements document example)", () => {
     const cube = createSolvedCube();
     let rotated = rotateCube(cube, "F", "clockwise");
     rotated = rotateCube(rotated, "R", "counterclockwise");
