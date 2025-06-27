@@ -27,7 +27,9 @@ const Timer = () => {
 
   return (
     <div className="flex flex-col items-center my-4">
-      <div className="text-2xl font-mono mb-2">{seconds}s</div>
+      <div className="text-2xl font-mono mb-2" data-testid="timer-value">
+        {seconds}s
+      </div>
       <div className="flex gap-2">
         <button
           type="button"

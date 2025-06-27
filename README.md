@@ -27,3 +27,13 @@ npm run build
 ```sh
 npm run preview
 ```
+
+### Storybook
+
+This project supports [Storybook](https://storybook.js.org/) for developing and testing UI components in isolation.
+
+To start Storybook locally:
+
+```sh
+npm run storybook
+```
