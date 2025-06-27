@@ -1,8 +1,7 @@
 import "@testing-library/jest-dom/vitest";
 import { beforeEach, describe, expect, test, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
-
-import Actions from "..";
+import Actions from "./Actions";
 
 describe("Actions Component", () => {
   const mockOnRotate = vi.fn();

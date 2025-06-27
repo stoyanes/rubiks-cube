@@ -2,7 +2,7 @@ import "@testing-library/jest-dom/vitest";
 import { describe, expect, test } from "vitest";
 import { render, screen } from "@testing-library/react";
 
-import Cube from "../Cube";
+import Cube from "./Cube";
 
 describe("Cube Component", () => {
   test("renders without crashing", () => {

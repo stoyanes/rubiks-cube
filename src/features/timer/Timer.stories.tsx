@@ -1,7 +1,7 @@
 import { type StoryObj } from "@storybook/react-vite";
 import { within, userEvent } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
-import Timer from "../Timer";
+import Timer from "./Timer";
 
 export default {
   title: "Features/Timer",

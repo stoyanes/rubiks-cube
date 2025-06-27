@@ -1,8 +1,7 @@
 import "@testing-library/jest-dom/vitest";
 import { beforeEach, describe, expect, test, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
-
-import FaceRotationButtons from "../FaceRotationButtons";
+import FaceRotationButtons from "./FaceRotationButtons";
 
 describe("FaceRotationButtons", () => {
   const mockOnRotate = vi.fn();

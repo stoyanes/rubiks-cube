@@ -2,7 +2,7 @@ import "@testing-library/jest-dom/vitest";
 import { describe, expect, test, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 
-import Timer from "../Timer";
+import Timer from "./Timer";
 
 describe("Timer Component", () => {
   beforeEach(() => {

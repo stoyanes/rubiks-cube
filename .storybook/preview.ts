@@ -1,5 +1,8 @@
 import { type Preview } from "@storybook/react-vite";
 
+// @ts-expect-error this is a workaround for Storybook's Vite integration
+import "../src/index.css";
+
 const preview: Preview = {
   parameters: {
     controls: {
