@@ -2,6 +2,8 @@
 
 [![Deploy Rubik's cube web app to Azure](https://github.com/stoyanes/rubiks-cube/actions/workflows/azure-staticwebapp.yml/badge.svg)](https://github.com/stoyanes/rubiks-cube/actions/workflows/azure-staticwebapp.yml)
 
+[**Live Demo**](https://calm-hill-00e6ef203.6.azurestaticapps.net/)
+
 **Rubik's Cube** is a web application for simulating and visualizing a Rubik's Cube. Built with React, TypeScript, and Vite, it provides an interactive interface to manipulate and explore the puzzle.
 
 ## Getting Started
