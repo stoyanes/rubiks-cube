@@ -35,7 +35,7 @@ const Timer = () => {
           type="button"
           onClick={handleStart}
           disabled={running}
-          className="px-3 py-1 bg-green-600 text-white rounded"
+          className="px-3 py-1 bg-green-800 text-white rounded"
         >
           Start
         </button>
@@ -43,7 +43,7 @@ const Timer = () => {
           type="button"
           onClick={handlePause}
           disabled={!running}
-          className="px-3 py-1 bg-yellow-500 text-white rounded"
+          className="px-3 py-1 bg-yellow-700 text-white rounded"
         >
           Pause
         </button>

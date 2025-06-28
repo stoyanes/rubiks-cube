@@ -15,7 +15,7 @@ describe("Cube Component", () => {
     render(<Cube />);
 
     // There should be 6 faces * 9 cells = 54 cells
-    expect(screen.getAllByRole("face-cell", { hidden: true }).length).toBe(54);
+    expect(screen.getAllByRole("gridcell", { hidden: true }).length).toBe(54);
   });
 
   test("renders the Actions component", () => {

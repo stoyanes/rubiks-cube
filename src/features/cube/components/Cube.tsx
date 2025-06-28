@@ -10,7 +10,7 @@ import { createSolvedCube, rotateCube } from "../../../lib/rotationEngine";
 
 const CubeFace = (cube: CubeState, face: Face) => {
   return (
-    <div className="grid grid-cols-3 gap-0">
+    <div className="grid grid-cols-3 gap-0" role="row">
       {cube[face].map((row, i) =>
         row.map((cell, j) => (
           <div
@@ -18,7 +18,7 @@ const CubeFace = (cube: CubeState, face: Face) => {
             key={`${face}-${i}-${j}`}
             className="w-11 h-11 border border-gray-800"
             style={{ background: faceColors[cell as Face] }}
-            role="face-cell"
+            role="gridcell"
           />
         )),
       )}
@@ -31,6 +31,7 @@ const CubeView = ({ cube }: { cube: CubeState }) => {
     <div
       data-testid="cube-view-container"
       className="flex flex-col items-center"
+      role="grid"
     >
       {/* Up face */}
       <div className="-ml-33">{CubeFace(cube, "U")}</div>
