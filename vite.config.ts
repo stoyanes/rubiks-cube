@@ -11,6 +11,15 @@ export default defineConfig({
     setupFiles: "./setupTests.js",
     coverage: {
       provider: "v8",
+      exclude: [
+        ".storybook",
+        "dist",
+        "src/main.tsx",
+        "src/vite-env.d.ts",
+        "src/**/*.stories.tsx",
+        "**/*.config.ts",
+        "**/*.config.js",
+      ],
     },
   },
 } as UserConfig);

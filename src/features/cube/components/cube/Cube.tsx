@@ -4,9 +4,9 @@ import {
   type CubeState,
   type Face,
   type RotationDirection,
-} from "../../../types";
-import Actions from "./actions/Actions";
-import { createSolvedCube, rotateCube } from "../../../lib/rotationEngine";
+} from "../../../../types";
+import { createSolvedCube, rotateCube } from "../../../../lib/rotationEngine";
+import Actions from "../actions/Actions";
 
 const CubeFace = (cube: CubeState, face: Face) => {
   return (

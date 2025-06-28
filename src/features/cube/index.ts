@@ -1,1 +1,1 @@
-export { default as Cube } from "./components/Cube";
+export { default as Cube } from "./components/cube/Cube";
