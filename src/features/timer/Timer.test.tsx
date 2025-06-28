@@ -29,13 +29,13 @@ describe("Timer Component", () => {
     fireEvent.click(screen.getByText(/start/i));
 
     act(() => {
-      vi.advanceTimersByTime(2000);
+      vi.advanceTimersByTime(2_000);
     });
 
     fireEvent.click(screen.getByText(/pause/i));
 
     act(() => {
-      vi.advanceTimersByTime(2000);
+      vi.advanceTimersByTime(2_000);
     });
 
     expect(screen.getByText("2s")).toBeInTheDocument();
@@ -47,7 +47,7 @@ describe("Timer Component", () => {
     fireEvent.click(screen.getByText(/start/i));
 
     act(() => {
-      vi.advanceTimersByTime(3000);
+      vi.advanceTimersByTime(3_000);
     });
 
     fireEvent.click(screen.getByText(/reset/i));
@@ -96,12 +96,12 @@ describe("Timer Component", () => {
     fireEvent.click(screen.getByText(/start/i));
 
     act(() => {
-      vi.advanceTimersByTime(2000);
+      vi.advanceTimersByTime(2_000);
     });
 
     fireEvent.click(screen.getByText(/pause/i));
     act(() => {
-      vi.advanceTimersByTime(3000);
+      vi.advanceTimersByTime(3_000);
     });
 
     expect(screen.getByText("2s")).toBeInTheDocument();
@@ -124,13 +124,13 @@ describe("Timer Component", () => {
     fireEvent.click(screen.getByText(/start/i));
 
     act(() => {
-      vi.advanceTimersByTime(2000);
+      vi.advanceTimersByTime(2_000);
     });
 
     fireEvent.click(screen.getByText(/pause/i));
 
     act(() => {
-      vi.advanceTimersByTime(2000);
+      vi.advanceTimersByTime(2_000);
     });
 
     fireEvent.click(screen.getByText(/start/i));

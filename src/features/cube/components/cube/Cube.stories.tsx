@@ -46,10 +46,47 @@ export const ResetCube: Story = {
     const frontClockwiseBtn = canvas.getByTitle("Front clockwise");
     await userEvent.click(frontClockwiseBtn);
 
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 2_000));
 
     const resetBtn = canvas.getByText("Reset Cube");
 
     await userEvent.click(resetBtn);
+  },
+};
+
+export const ComplexRotationDoingRequirementsExample: Story = {
+  render: () => <Cube />,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    const frontClockwiseBtn = canvas.getByTitle("Front clockwise");
+    await userEvent.click(frontClockwiseBtn);
+
+    await new Promise((resolve) => setTimeout(resolve, 1_000));
+
+    const rightCounterClockwiseBtn = canvas.getByTitle(
+      "Right counterclockwise",
+    );
+    await userEvent.click(rightCounterClockwiseBtn);
+
+    await new Promise((resolve) => setTimeout(resolve, 1_000));
+
+    const upClockwiseBtn = canvas.getByTitle("Up clockwise");
+    await userEvent.click(upClockwiseBtn);
+
+    await new Promise((resolve) => setTimeout(resolve, 1_000));
+
+    const backCounterClockwiseBtn = canvas.getByTitle("Back counterclockwise");
+    await userEvent.click(backCounterClockwiseBtn);
+
+    await new Promise((resolve) => setTimeout(resolve, 1_000));
+
+    const leftClockwiseBtn = canvas.getByTitle("Left clockwise");
+    await userEvent.click(leftClockwiseBtn);
+
+    await new Promise((resolve) => setTimeout(resolve, 1_000));
+
+    const downCounterClockwiseBtn = canvas.getByTitle("Down counterclockwise");
+    await userEvent.click(downCounterClockwiseBtn);
   },
 };

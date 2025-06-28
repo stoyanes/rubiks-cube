@@ -28,3 +28,39 @@ export const StartsOnClick = {
     expect(timerDisplay.textContent).not.toBe("0s");
   },
 };
+
+export const PausesOnClick = {
+  render: () => <Timer />,
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const canvas = within(canvasElement);
+
+    const startButton = await canvas.findByRole("button", { name: /start/i });
+    await userEvent.click(startButton);
+
+    await new Promise((resolve) => setTimeout(resolve, 2_000));
+
+    const pauseButton = await canvas.findByRole("button", { name: /pause/i });
+    await userEvent.click(pauseButton);
+
+    const timerDisplay = await canvas.findByTestId("timer-value");
+    expect(timerDisplay.textContent).not.toBe("0s");
+  },
+};
+
+export const ResetsOnClick = {
+  render: () => <Timer />,
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const canvas = within(canvasElement);
+
+    const startButton = await canvas.findByRole("button", { name: /start/i });
+    await userEvent.click(startButton);
+
+    await new Promise((resolve) => setTimeout(resolve, 2_000));
+
+    const resetButton = await canvas.findByRole("button", { name: /reset/i });
+    await userEvent.click(resetButton);
+
+    const timerDisplay = await canvas.findByTestId("timer-value");
+    expect(timerDisplay.textContent).toBe("0s");
+  },
+};
