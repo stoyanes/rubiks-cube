@@ -1,5 +1,5 @@
 import { expect, test, describe } from "vitest";
-import { createSolvedCube, rotateCube } from "../rotationEngine";
+import { createSolvedCube, rotateCube } from "./rotationEngine";
 
 describe("createSolvedCube", () => {
   test("returns a solved cube", () => {

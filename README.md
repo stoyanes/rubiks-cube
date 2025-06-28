@@ -1,4 +1,4 @@
-# Rubik's Cube Simulator
+# Rubik's Cube
 
 [![Deploy Rubik's cube web app to Azure](https://github.com/stoyanes/rubiks-cube/actions/workflows/azure-staticwebapp.yml/badge.svg)](https://github.com/stoyanes/rubiks-cube/actions/workflows/azure-staticwebapp.yml)
 
