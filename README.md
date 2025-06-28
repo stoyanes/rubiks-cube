@@ -6,6 +6,19 @@
 
 **Rubik's Cube** is a web application for simulating and visualizing a Rubik's Cube. Built with React, TypeScript, and Vite, it provides an interactive interface to manipulate and explore the puzzle.
 
+## Minimum Requirements
+
+- **Node.js**: v18.x or higher
+- **npm**: v9.x or higher
+- **OS**: macOS, Linux, or Windows
+
+You can check your versions with:
+
+```sh
+node -v
+npm -v
+```
+
 ## Getting Started
 
 ### Install dependencies

@@ -10,8 +10,20 @@ It helps ensure components are robust, accessible, and easy to use.
 This project is a Rubik's Cube application built with React.
 It includes features such as a timer, cube visualization, and user interaction tools.
 
-## How to Use Storybook
+## Running Storybook
 
-- Browse the sidebar to explore available components and features.
-- View live demos and documentation for each component.
-- Use the controls panel to interact with component props.
+To start Storybook locally, run the following command in your project root:
+
+```bash
+npm run storybook
+```
+
+This will open Storybook in your browser for interactive development.
+
+## Adding New Stories
+
+- New stories should be placed next the to underlying components.
+- Use `.stories.tsx`, or `.mdx` files to document and demonstrate your components.
+- For shared or global stories, use the `stories/` directory.
+
+Refer to existing stories for examples and best practices in story creation.
