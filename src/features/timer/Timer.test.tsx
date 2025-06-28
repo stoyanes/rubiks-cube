@@ -1,6 +1,7 @@
-import "@testing-library/jest-dom/vitest";
+import { act } from "react";
 import { describe, expect, test, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
+import "@testing-library/jest-dom/vitest";
 
 import Timer from "./Timer";
 
@@ -10,13 +11,12 @@ describe("Timer Component", () => {
   });
 
   afterEach(() => {
-    vi.runOnlyPendingTimers();
     vi.useRealTimers();
-    vi.clearAllTimers();
   });
 
   test("renders correctly", () => {
     render(<Timer />);
+
     expect(screen.getByText(/start/i)).toBeInTheDocument();
     expect(screen.getByText(/pause/i)).toBeInTheDocument();
     expect(screen.getByText(/reset/i)).toBeInTheDocument();
@@ -27,9 +27,16 @@ describe("Timer Component", () => {
     render(<Timer />);
 
     fireEvent.click(screen.getByText(/start/i));
-    vi.advanceTimersByTime(2000);
+
+    act(() => {
+      vi.advanceTimersByTime(2000);
+    });
+
     fireEvent.click(screen.getByText(/pause/i));
-    vi.advanceTimersByTime(2000);
+
+    act(() => {
+      vi.advanceTimersByTime(2000);
+    });
 
     expect(screen.getByText("2s")).toBeInTheDocument();
   });
@@ -38,7 +45,11 @@ describe("Timer Component", () => {
     render(<Timer />);
 
     fireEvent.click(screen.getByText(/start/i));
-    vi.advanceTimersByTime(3000);
+
+    act(() => {
+      vi.advanceTimersByTime(3000);
+    });
+
     fireEvent.click(screen.getByText(/reset/i));
 
     expect(screen.getByText("0s")).toBeInTheDocument();
@@ -49,6 +60,7 @@ describe("Timer Component", () => {
 
     const startBtn = screen.getByText(/start/i);
     fireEvent.click(startBtn);
+
     expect(startBtn).toBeDisabled();
   });
 
@@ -57,33 +69,50 @@ describe("Timer Component", () => {
 
     const pauseBtn = screen.getByText(/pause/i);
     expect(pauseBtn).toBeDisabled();
+
     fireEvent.click(screen.getByText(/start/i));
     expect(pauseBtn).not.toBeDisabled();
   });
 
   test("Reset button resets timer and enables Start", () => {
     render(<Timer />);
+
     const startBtn = screen.getByText(/start/i);
     fireEvent.click(startBtn);
-    vi.advanceTimersByTime(1500);
+
+    act(() => {
+      vi.advanceTimersByTime(1500);
+    });
+
     fireEvent.click(screen.getByText(/reset/i));
+
     expect(screen.getByText("0s")).toBeInTheDocument();
     expect(startBtn).not.toBeDisabled();
   });
 
   test("Timer does not increment when paused", () => {
     render(<Timer />);
+
     fireEvent.click(screen.getByText(/start/i));
-    vi.advanceTimersByTime(2000);
+
+    act(() => {
+      vi.advanceTimersByTime(2000);
+    });
+
     fireEvent.click(screen.getByText(/pause/i));
-    vi.advanceTimersByTime(3000);
+    act(() => {
+      vi.advanceTimersByTime(3000);
+    });
+
     expect(screen.getByText("2s")).toBeInTheDocument();
   });
 
   test("Multiple resets keep timer at 0", () => {
     render(<Timer />);
+
     fireEvent.click(screen.getByText(/reset/i));
     expect(screen.getByText("0s")).toBeInTheDocument();
+
     fireEvent.click(screen.getByText(/reset/i));
     fireEvent.click(screen.getByText(/reset/i));
     expect(screen.getByText("0s")).toBeInTheDocument();
@@ -93,10 +122,17 @@ describe("Timer Component", () => {
     render(<Timer />);
 
     fireEvent.click(screen.getByText(/start/i));
-    vi.advanceTimersByTime(2000);
+
+    act(() => {
+      vi.advanceTimersByTime(2000);
+    });
+
     fireEvent.click(screen.getByText(/pause/i));
 
-    vi.advanceTimersByTime(2000);
+    act(() => {
+      vi.advanceTimersByTime(2000);
+    });
+
     fireEvent.click(screen.getByText(/start/i));
 
     expect(screen.getByText("2s")).toBeInTheDocument();
