@@ -1,5 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 
+/**
+ * Timer component for tracking elapsed time in seconds.
+ *
+ * Provides start, pause, and reset controls. Displays the elapsed time and manages its own state.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered Timer component.
+ */
 const Timer = () => {
   const [seconds, setSeconds] = useState(0);
   const [running, setRunning] = useState(false);

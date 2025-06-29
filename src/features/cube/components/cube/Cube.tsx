@@ -48,6 +48,15 @@ const CubeView = ({ cube }: { cube: CubeState }) => {
   );
 };
 
+/**
+ * Cube component for displaying and interacting with a Rubik's Cube.
+ *
+ * Renders the cube (CubeView component) and action controls. Maintains the cube state and handles
+ * rotation and reset actions.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered Cube component.
+ */
 const Cube = () => {
   const [cube, setCube] = useState(createSolvedCube());
 

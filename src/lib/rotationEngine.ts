@@ -7,6 +7,14 @@ import {
 
 const CUBE_SIZE = 3;
 
+/**
+ * Creates and returns a solved Rubik's Cube state.
+ *
+ * @returns {CubeState} A new CubeState object where each face is filled with its corresponding face label.
+ *
+ * Each face ('F', 'B', 'U', 'D', 'L', 'R') is represented as a 3x3 array filled with the face's letter.
+ * This function is useful for initializing the cube to its solved state.
+ */
 export const createSolvedCube = (): CubeState => {
   return {
     F: Array.from(
@@ -81,6 +89,18 @@ const updateColumn = (
 
 const rev = (arr: string[]): string[] => [...arr].reverse();
 
+/**
+ * Rotates a face of the Rubik's Cube and updates the adjacent faces accordingly.
+ *
+ * @param {CubeState} cube - The current state of the cube.
+ * @param {Face} face - The face to rotate ('F', 'B', 'U', 'D', 'L', or 'R').
+ * @param {RotationDirection} direction - The direction to rotate ('clockwise' or 'counterclockwise').
+ * @returns {CubeState} The new cube state after the rotation.
+ * @throws {Error} If the face or direction is invalid.
+ *
+ * This function performs a 90-degree rotation of the specified face and updates the adjacent rows or columns
+ * of the neighboring faces to reflect the rotation. The cube state is not mutated; a new state is returned.
+ */
 export const rotateCube = (
   cube: CubeState,
   face: Face,
