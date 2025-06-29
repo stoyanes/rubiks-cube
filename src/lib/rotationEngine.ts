@@ -99,10 +99,10 @@ export const rotateCube = (
   newCube[face] = rotateFace(cube[face], direction);
 
   if (face === "F") {
-    const up = getRow(cube.U, 2);
+    const up = getRow(cube.U, CUBE_SIZE - 1);
     const right = getColumn(cube.R, 0);
     const down = getRow(cube.D, 0);
-    const left = getColumn(cube.L, 2);
+    const left = getColumn(cube.L, CUBE_SIZE - 1);
 
     if (direction === "clockwise") {
       updateRow(newCube.U, CUBE_SIZE - 1, rev(left));
