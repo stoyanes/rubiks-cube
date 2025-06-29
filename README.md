@@ -8,8 +8,8 @@
 
 ## Minimum Requirements
 
-- **Node.js**: v18.x or higher
-- **npm**: v9.x or higher
+- **Node.js**: v20.x or higher
+- **npm**: v10.x or higher
 - **OS**: macOS, Linux, or Windows
 
 You can check your versions with:
